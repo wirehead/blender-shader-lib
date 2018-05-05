@@ -4,10 +4,9 @@ I was like "Hey, I should set up a GitHub repo to store bits for Blender, so I c
 
 Then I was like "Hey, the only repos full of shaders worth keeping secret are the repos at the major effects houses, so why not just keep this all public"
 
-Since I didn't really find myself liking any of the tools for managing workflows, I'm just providing these as Blender files that you can append or link as you desire, with verbose and hopefully useful descriptions as necessary.
+Since I didn't really find myself liking any of the tools for managing workflows., I'm just providing these as Blender files that you can append or link as you desire, with verbose and hopefully useful descriptions as necessary.
 
 This is all a little bit half-baked, but on purpose.  You should be appending these shaders to your project and individually customizing them to the known properties of the object.
-
 
 ## Disney's Principled BSDF: A Brief history
 
@@ -69,6 +68,8 @@ Steel is a very flexible material, overall.  Right now, I've just added cast ste
 
 Copper is frequently hammered to shape it.
 
+Finally, you can powder-coat the metal.
+
 There is:
 - Brushed Pickled Aluminum
 - Cast Pickled Steel
@@ -81,31 +82,94 @@ There is:
 
 There are a few kinds of glass to know about.
 
-First, there's soda lime glass.  For the present purposes, I'm calling them "crown" glass.
+First, there's soda lime glass.  For the present purposes, I'm calling them "crown" glass.  The majority of the glass you experience in the real world is some formulation of soda lime glass -- windows, drinking glasses, etc.
 
-Second, there's leaded glass.  This is often called "Crystal".
+Second, there's leaded glass.  This is often called "Crystal".  It's one of the cheapest fake-gemstones you can find.  It's got a very different refractive index, which makes it sparkle.
 
-Finally, there's fused silica or fused quartz, which is absurdly annoying to work with and mostly seen in labs and spacecraft windows.  And there's borosilicate or "Pyrex" that is still fairly hard to work with, but more common.
+And there's borosilicate or "Pyrex" that is much harder to work with, but very sturdy. Note that most of the things you go into the store and buy that are branded as "Pyrex" are not actually borosilicate anymore.  Lab glassware is often Pyrex.
 
-Cycles can't do real dispersion (meaning, that rainbow effect you get out of properly cut crystal) so there's fake dispersion provided.
+Finally, there's fused silica or fused quartz, which is absurdly annoying to work with and mostly seen in labs and spacecraft windows.
 
-There is also a reduced complexity crown glass for use with windows.
+Cycles can't do real dispersion (meaning, that rainbow effect you get out of properly cut crystal) so there's fake dispersion provided for a few materials.  There is also a reduced complexity crown glass for use with windows.
 
 ### Plastics
 
 You can look at a piece of plastic and tease out some of the properties.
 
-I have PET (#1) and Polystyrine (#6) plastics, both of which you should see the number of in the recycling symbol.
+I have PET (#1) and Polystyrine (#6) plastics, both of which you should see the number of in the recycling symbol.  The majority of plastic drink bottles are PET.
 
 Acrylic is the most common non-glass window material, with Polycarbonate the second most popular one.
 
 ### Gems
 
-There's Ruby and White Sapphire here.
+There's Ruby and White Sapphire and Diamond, with some fake dispersion available.
 
 ### Liquids
 
 Since the TSA counts ice as a "liquid", I'll file it under this category.  There's also water and whisky.
+
+### Fully fake glass
+
+Sometimes you want a material that looks kinda like glass, but not really.
+
+That's where the Fully Fake Glass material comes in.  It's not using Principled, it's instead using a node group.  The whole point is to have a fresnel reflection that looks more-or-less like real glass, but not actually refract.
+
+## Cycles Principled Plastics
+
+- Powdercoated metal - If you look at any sort of powdercoated metal, regardless of the material underneath, you are going to end up seeing the same top material.
+- Gray pebbled powdercoat - This is the more pebbly sort of powdercoat.  I made it for a stage lighting instrument, because that's where I see it the most.
+- White Melamine - This is the sort of thing that white IKEA furniture is covered with.  Change the white to something else and you've got every sort of cheap melamine countertop in the world.
+
+There's probably more plastics to be made, but also understand that in 3D, plastic is the default mode and the default criticism.  :D
+
+## Cycles Principled Construction Materials
+
+### Wall paint
+
+Wall paint is usually a little bit bumpy and the way the paint dries creates a bit of an impression of a clearcoat, even if there isn't one.  I've provided a white one and a gray one.  You probably want to adjust the particular texture and roughness depending on what sort of wall you want.
+
+### Other materials
+
+ - Stucco - This is all about the bump map.
+ - Soundproofing hard material - This is a rumply cellular sort of material, for the hard sort of soundproofing baffles
+ - Marble - You can get whatever color you want by tweaking the color ramps.
+
+## Cycles Principled Fabric
+
+There's a lot of fabrics here.  Most of them are going to require you to have UV mapping set up properly.
+
+All of these will require some tweaking.  You'll want to change the scale, the colors, etc.
+
+### Nylons
+
+All of these materials are designed such that they look good with a fully three-dimensional solid mesh with a little bit of thickness, say the solidify modifier set very thin.
+
+I included "Sheer Nylon Fake" as part of my experimentation into sheer fabrics.  It renders faster, but it doesn't quite look the same.
+
+The rest of the materials, in a variety of colors, are as if Cycles was rendering tiny threads.  I think it looks more realistic, especially up close.  Sampling means that they tend to look like the usual sheer fabrics from afar, but resolve into textures up close.
+
+At a wider mesh, there's also black fishnets.
+
+### Cottons
+
+I've got oxford cotton, checkered cotton, t-shirt material with a bit of a streakyness, striped cotton, and there's probably a bunch to be had by cloning an existing material and tinkering with it.
+
+### Leathers
+
+I supplied new black leather and worn black leather.  Worn black leather has less glossy bits and some fake-wear on it.
+
+### Wool
+
+Most wool has some patterning to it, so I've got two different shades.  There's probably more to be had with more intricate striped patterns.
+
+### Other fabrics
+
+- B&W Felt
+- Carbon fiber
+- Two tone satin
+- Silk
+- Satin
+- Crushed Velvet
 
 ## CC0: Share and enjoy
 
@@ -121,3 +185,4 @@ https://creativecommons.org/publicdomain/zero/1.0/
 - https://blenderartists.org/forum/showthread.php?278285-Yet-Another-Thread-about-Cycles-Materials&p=2288101&viewfull=1
 - https://blender.stackexchange.com/questions/40920/how-can-i-make-a-procedural-polished-granite-material
 - https://blender.stackexchange.com/questions/18348/how-to-make-a-bronze-material-in-cycles
+- https://www.reddit.com/r/blender/comments/5gr7it/this_is_the_best_node_setup_i_can_think_of_for/
