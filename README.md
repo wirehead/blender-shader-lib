@@ -22,7 +22,7 @@ Enter a hard drive corruption, a new machine where I realized that the built-in 
 
 If you compared to where we were (Lambert+Phong) to Principled BSDF, you'll note that both of them have a small number of knobs that you tweak to express a wide variety of material properties.  It's just that Principled BSDF has the benefit of a few decades of careful observation, math, and experience making scenes.
 
-So far, Principled has had me twiddling fewer knobs than Lambert+Phong.
+So far, Principled has had me twiddling fewer knobs than Lambert+Phong, yet getting a more useful variety of options.
 
 ## Cycles Principled Metals
 
@@ -30,8 +30,6 @@ So far, Principled has had me twiddling fewer knobs than Lambert+Phong.
 
 In this category, there is:
 - Aluminum
-- Iron/Steel
-- Copper
 - Brass
 - Chrome
 - Copper
@@ -39,6 +37,9 @@ In this category, there is:
 - Lead
 - Nickel
 - Platinum
+- Silver
+- Steel/Iron
+- Titanium
 
 For simplicity's sake, I'm going to start off with the polished pickled metals.  This is where you fabricated something out of the metal, then you polished it, then you threw it in an acid bath to get off any greases or oxides or contaminates, and then you looked at it before it had a chance to rust / corrode / etc.  These are pretty much the base case for the Metallicity=1.0 slider.
 
@@ -82,15 +83,15 @@ There is:
 
 There are a few kinds of glass to know about.
 
-First, there's soda lime glass.  For the present purposes, I'm calling them "crown" glass.  The majority of the glass you experience in the real world is some formulation of soda lime glass -- windows, drinking glasses, etc.
+First, there's soda lime glass.  For the present purposes, I'm calling them "crown" glass.  The majority of the glass you experience in the real world is some formulation of soda lime glass -- windows, drinking glasses, etc.  I've added Crown Glass, plus a version that's a little simpler and faster for windows.
 
-Second, there's leaded glass.  This is often called "Crystal".  It's one of the cheapest fake-gemstones you can find.  It's got a very different refractive index, which makes it sparkle.
+Second, there's leaded glass.  This is often called "Crystal".  It's one of the cheapest fake-gemstones you can find.  It's got a very different refractive index, which makes it sparkle.  I've added 71% leaded glass, plus a version with fake dispersion, which I'll explain below.
 
 And there's borosilicate or "Pyrex" that is much harder to work with, but very sturdy. Note that most of the things you go into the store and buy that are branded as "Pyrex" are not actually borosilicate anymore.  Lab glassware is often Pyrex.
 
 Finally, there's fused silica or fused quartz, which is absurdly annoying to work with and mostly seen in labs and spacecraft windows.
 
-Cycles can't do real dispersion (meaning, that rainbow effect you get out of properly cut crystal) so there's fake dispersion provided for a few materials.  There is also a reduced complexity crown glass for use with windows.
+Cycles can't do real dispersion (meaning, that rainbow effect you get out of properly cut crystal) so there's fake dispersion provided for a few materials.
 
 ### Plastics
 
@@ -124,15 +125,32 @@ There's probably more plastics to be made, but also understand that in 3D, plast
 
 ## Cycles Principled Construction Materials
 
+### Concrete
+
+I've got three concretes.
+
+First, the standard concrete.  The rough sort.
+
+Second, a slightly smoother concrete, where they carefully smoothed it down.
+
+Third, Polished Clearcoated concrete.  Like where they carefully polish it and cover it with a clearcoat for a hip office space.
+
 ### Wall paint
 
 Wall paint is usually a little bit bumpy and the way the paint dries creates a bit of an impression of a clearcoat, even if there isn't one.  I've provided a white one and a gray one.  You probably want to adjust the particular texture and roughness depending on what sort of wall you want.
 
+### Brick Wall
+
+I did some digging and found [a StackExchange thread](https://blender.stackexchange.com/questions/112843/how-can-i-make-my-procedural-brick-texture-map-correctly-to-both-a-cube-and-cyli) that has a pretty reasonable method of mapping the brick texture against most reasonable surfaces without requiring you to carefully set up a UV-map.
+
 ### Other materials
 
+ - Dirt with grass patches - A nice starting place for muddy dirty ground.
+ - Tar Roof - This is for the sort of sandy-pebbly black rooftop material you see.
  - Stucco - This is all about the bump map.
  - Soundproofing hard material - This is a rumply cellular sort of material, for the hard sort of soundproofing baffles
  - Marble - You can get whatever color you want by tweaking the color ramps.
+ - Street - A rough approximation of asphault
 
 ## Cycles Principled Fabric
 
@@ -186,3 +204,6 @@ https://creativecommons.org/publicdomain/zero/1.0/
 - https://blender.stackexchange.com/questions/40920/how-can-i-make-a-procedural-polished-granite-material
 - https://blender.stackexchange.com/questions/18348/how-to-make-a-bronze-material-in-cycles
 - https://www.reddit.com/r/blender/comments/5gr7it/this_is_the_best_node_setup_i_can_think_of_for/
+- https://blender.stackexchange.com/questions/112843/how-can-i-make-my-procedural-brick-texture-map-correctly-to-both-a-cube-and-cyli
+- https://google.github.io/filament/Material%20Properties.pdf
+- https://blenderartists.org/t/cycles-exterior-render-architectural-glass-material-question/569071/8
